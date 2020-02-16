@@ -1,4 +1,3 @@
-
 var box1 = document.querySelector('#box1');
 var box2 = document.querySelector('#box2');
 var box3 = document.querySelector('#box3');
@@ -41,23 +40,43 @@ function rolldice2() {
     console.log(" person2 play", position);
     changeposition2(person2[1], position);
 }
-
+var count = 0;
 function changeposition1(old, current) {
+    count++;
     var newposition = old + current;
     person1[1] = newposition;
-        newposition = newposition % 15;  
-        let template = '<img src="./images/p2.png" id="#img1" alt="red" style="width: 36px;">';
+    newposition = newposition % 15;  
+    var img = document.getElementById('img1');
+    img.style.visibility = 'hidden';
+    console.log(" count" + count);
+    if(count%2==0)
+    {
+     var img1 = document.getElementById('img11');
+     img1.style.visibility = 'hidden';
+     console.log(" count" + count);
+    }
+        let template = '<img src="./images/p2.png" id="img11" alt="red" style="width: 36px;">';
         document.querySelector('#img1').style.display = "";
         arrdiv[newposition].innerHTML += template;
     console.log(" person1 play", person1[1]);
     changeMoney1(person1[1]);
 }
-
+var count2=0;
 function changeposition2(old, current) {
+    count2++;
     var newposition = old + current;
     person2[1] = newposition;
     newposition = newposition % 15;
-    let template = '<img src="./images/p1.png" id="#img1" alt="red" style="width: 20px;">';
+     var img = document.getElementById('img2');
+     img.style.visibility = 'hidden';
+
+   if (count2 % 2 == 0) {
+       var img2 = document.getElementById('img12');
+       img2.style.visibility = 'hidden';
+       console.log(" count" + count);
+   }
+
+    let template = '<img src="./images/p1.png" id="img12" alt="red" style="width: 20px;">';
     document.querySelector('#img1').style.display = "";
     arrdiv[newposition].innerHTML += template;
     console.log(" person2 play", person2[1]);
