@@ -3,6 +3,9 @@
 {
     box-sizing: border-box;
 }
+body{
+    background-color: aquamarine;
+}
 .container
 {
  width: 485px;
@@ -21,14 +24,7 @@ color: crimson;
 font-size: 30px;
 padding: 20px;
 }
-#arrow
-{
-    position: absolute;
-    margin-top: 13px;
-    margin-left: 350px;
-    width: 100px;
-    
-}
+
  .container span
  {
      width: 82%;

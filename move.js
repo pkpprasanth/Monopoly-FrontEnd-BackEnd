@@ -13,7 +13,7 @@ var box5 = document.querySelector('#box5');
 
 
 var d = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
-var arrdiv = [box1, box2, box3, box4, box8, box12, box16, box15, box14, box13, box9, box5, box1];
+var arrdiv = [box1, box2, box3, box4, box8, box12, box16, box15, box14, box13, box9, box5];
 
 
 const player1 = document.getElementById('btn1');
@@ -45,19 +45,18 @@ function changeposition1(old, current) {
     count++;
     var newposition = old + current;
     person1[1] = newposition;
-    newposition = newposition % 15;  
+    newposition = newposition % 11;  
     var img = document.getElementById('img1');
     img.style.visibility = 'hidden';
     console.log(" count" + count);
-    if(count%2==0)
-    {
-     var img1 = document.getElementById('img11');
-     img1.style.visibility = 'hidden';
-     console.log(" count" + count);
-    }
-        let template = '<img src="./images/p2.png" id="img11" alt="red" style="width: 36px;">';
-        document.querySelector('#img1').style.display = "";
-        arrdiv[newposition].innerHTML += template;
+    if(count>1)
+     {
+         var elem = document.getElementById("img11");
+         elem.remove();
+     }
+   
+         let template = '<img src="./images/bB.png" id="img11" alt="red" style="width: 36px;">';
+         arrdiv[newposition].innerHTML += template;      
     console.log(" person1 play", person1[1]);
     changeMoney1(person1[1]);
 }
@@ -66,18 +65,16 @@ function changeposition2(old, current) {
     count2++;
     var newposition = old + current;
     person2[1] = newposition;
-    newposition = newposition % 15;
+    newposition = newposition % 11;
      var img = document.getElementById('img2');
      img.style.visibility = 'hidden';
 
-   if (count2 % 2 == 0) {
-       var img2 = document.getElementById('img12');
-       img2.style.visibility = 'hidden';
-       console.log(" count" + count);
-   }
+  if (count2 > 1) {
+      var elem = document.getElementById("img12");
+      elem.remove();
+  }
 
-    let template = '<img src="./images/p1.png" id="img12" alt="red" style="width: 20px;">';
-    document.querySelector('#img1').style.display = "";
+    let template = '<img src="./images/wB.png" id="img12" alt="red" style="width: 36px;">';
     arrdiv[newposition].innerHTML += template;
     console.log(" person2 play", person2[1]);
     changeMoney2(person2[1]);
@@ -88,12 +85,18 @@ function changeMoney1(p2) {
     if (p2 < d.length) {
         updateMoney = person1[2] - d[p2 - 1];
     } else {
-        p2 = p2 % 15;
+        p2 = p2 % 11;
         updateMoney = person1[2] - d[p2 - 1];
     }
     person1[2] = updateMoney;
+    if (updateMoney > 0)
+    {
     document.querySelector('.item3').innerHTML = updateMoney;
-    console.log("Player-1 Money", person1[2]);
+    
+    }
+    else{
+        document.querySelector('.item3').innerHTML = "Player 2 Win";
+    }
 
 }
 
@@ -102,11 +105,16 @@ function changeMoney2(p2) {
     if (p2 < d.length) {
         updateMoney = person2[2] - d[p2 - 1];
     } else {
-        p2 = p2 % 15;
+        p2 = p2 % 11;
         updateMoney = person2[2] - d[p2 - 1];
     }
     person2[2] = updateMoney;
-    document.querySelector('.item4').innerHTML = updateMoney;
-    console.log("Player-2 Money", person2[2]);
+    if (updateMoney>0)
+       {
+            document.querySelector('.item4').innerHTML = updateMoney;
+       }
+       else{
+           document.querySelector('.item4').innerHTML = "Player 1 Win";
+       }
 
 }
